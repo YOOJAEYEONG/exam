@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
 
 public class MultiServer {
 
@@ -35,9 +36,17 @@ public class MultiServer {
 				System.out.println(name +" 접속");
 				out.println("> "+ name +"님이 접속했습니다.");
 			}
-
+			
+			
 			while(in != null) {
 				s = in.readLine();
+				
+				
+				
+				if(agent(s)) {
+					out.println("금지단어이므로 출력되지 않습니다");
+					continue;
+				}
 				if(s==null) {
 					break;
 				}
@@ -62,6 +71,11 @@ public class MultiServer {
 			}
 		}
 	}
+	public static boolean agent(String msg) {
+		
+		return msg.contains("광고");
+	}
 }
+
 
 
